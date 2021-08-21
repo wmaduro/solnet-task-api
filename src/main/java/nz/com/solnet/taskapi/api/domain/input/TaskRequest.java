@@ -10,6 +10,9 @@ import lombok.Data;
 
 @Data
 public class TaskRequest {
+	@JsonInclude(Include.NON_NULL)
+	private String status;
+	@JsonInclude(Include.NON_NULL)
 	private String title;
 	@JsonInclude(Include.NON_NULL)
 	private String description;
