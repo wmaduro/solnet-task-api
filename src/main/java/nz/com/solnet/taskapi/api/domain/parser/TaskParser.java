@@ -2,6 +2,7 @@ package nz.com.solnet.taskapi.api.domain.parser;
 
 import java.util.List;
 
+import org.modelmapper.Conditions;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
@@ -17,8 +18,8 @@ import nz.com.solnet.taskapi.api.domain.model.TaskModel;
 public class TaskParser {
 	
 	private ObjectMapper objectMapper = new ObjectMapper();
-	private ModelMapper modelMapper = new ModelMapper();
-	
+	private ModelMapper modelMapper = new ModelMapper();	
+		
 	public TaskListResponse toTaskListResponse(List<TaskEntity> taskEntityList) {
 		
 		List<TaskModel> taskModelList = 
@@ -37,6 +38,7 @@ public class TaskParser {
 	}
 	
 	public void mergeToEntity(TaskRequest taskRequest, TaskEntity taskEntity) {
+		modelMapper.getConfiguration().setPropertyCondition(Conditions.isNotNull());
 		modelMapper.map(taskRequest, taskEntity);
 	}
 
