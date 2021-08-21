@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:derby:memory:local;create=true
+       
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+
+logging:
+  pattern:
+    console: '- %msg%n'
+  level:
+    ROOT: INFO    
