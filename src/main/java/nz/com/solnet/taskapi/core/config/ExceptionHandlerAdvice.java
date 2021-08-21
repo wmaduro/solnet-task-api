@@ -28,7 +28,7 @@ public class ExceptionHandlerAdvice {
 
 	private CustomErrorResponse generateCustomErrorResponse(Exception e) {
 		return generateCustomErrorResponse(
-				(e.getMessage() == null || e.getMessage().isBlank()) ? "Undefined Message" : e.getMessage());
+				(e.getMessage() == null || e.getMessage().isEmpty()) ? "Undefined Message" : e.getMessage());
 	}
 
 	private CustomErrorResponse generateCustomErrorResponse(String message) {
