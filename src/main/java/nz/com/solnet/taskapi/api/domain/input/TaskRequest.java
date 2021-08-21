@@ -1,4 +1,4 @@
-package nz.com.solnet.taskapi.usecase.domain.input;
+package nz.com.solnet.taskapi.api.domain.input;
 
 import java.util.Date;
 
@@ -16,7 +16,5 @@ public class TaskRequest {
 	@JsonInclude(Include.NON_NULL)
 	@JsonFormat (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
 	private Date due_date;
-	@JsonFormat (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
-	private Date creation_date;
 
 }

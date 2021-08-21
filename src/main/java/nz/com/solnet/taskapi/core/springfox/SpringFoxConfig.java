@@ -34,9 +34,8 @@ public class SpringFoxConfig implements WebMvcConfigurer {
 	
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder()
-				.title("Solnet Task API")
+				.title("Task API")
 				.description("Task API for testing purposes.")
-				.contact(new Contact("Solnet", "https://solnet.co.nz", ""))
 				.build();
 	}
 	

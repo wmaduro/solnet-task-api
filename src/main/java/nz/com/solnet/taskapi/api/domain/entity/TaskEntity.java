@@ -1,4 +1,4 @@
-package nz.com.solnet.taskapi.usecase.domain.entity;
+package nz.com.solnet.taskapi.api.domain.entity;
 
 import java.util.Date;
 

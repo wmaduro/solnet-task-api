@@ -1,4 +1,4 @@
-package nz.com.solnet.taskapi.usecase.service;
+package nz.com.solnet.taskapi.api.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,9 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import nz.com.solnet.taskapi.api.domain.entity.TaskEntity;
+import nz.com.solnet.taskapi.api.repository.ITaskRepository;
 import nz.com.solnet.taskapi.core.exception.custom.CustomResourceNotFoundException;
-import nz.com.solnet.taskapi.usecase.domain.entity.TaskEntity;
-import nz.com.solnet.taskapi.usecase.repository.ITaskRepository;
 
 @Service
 public class TaskService {

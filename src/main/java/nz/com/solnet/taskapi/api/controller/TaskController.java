@@ -1,4 +1,4 @@
-package nz.com.solnet.taskapi.usecase.controller;
+package nz.com.solnet.taskapi.api.controller;
 
 import java.util.List;
 
@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import nz.com.solnet.taskapi.usecase.domain.entity.TaskEntity;
-import nz.com.solnet.taskapi.usecase.domain.input.TaskListResponse;
-import nz.com.solnet.taskapi.usecase.domain.input.TaskRequest;
-import nz.com.solnet.taskapi.usecase.domain.model.TaskModel;
-import nz.com.solnet.taskapi.usecase.domain.parser.TaskParser;
-import nz.com.solnet.taskapi.usecase.service.TaskService;
+import nz.com.solnet.taskapi.api.domain.entity.TaskEntity;
+import nz.com.solnet.taskapi.api.domain.input.TaskListResponse;
+import nz.com.solnet.taskapi.api.domain.input.TaskRequest;
+import nz.com.solnet.taskapi.api.domain.model.TaskModel;
+import nz.com.solnet.taskapi.api.domain.parser.TaskParser;
+import nz.com.solnet.taskapi.api.service.TaskService;
 
 @Api(tags = "Tasks")
 @RestController

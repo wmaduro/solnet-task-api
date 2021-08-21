@@ -1,4 +1,4 @@
-package nz.com.solnet.taskapi.usecase.repository;
+package nz.com.solnet.taskapi.api.repository;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import nz.com.solnet.taskapi.usecase.domain.entity.TaskEntity;
+import nz.com.solnet.taskapi.api.domain.entity.TaskEntity;
 
 
 @Repository

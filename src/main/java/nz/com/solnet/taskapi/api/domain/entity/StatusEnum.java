@@ -1,4 +1,4 @@
-package nz.com.solnet.taskapi.usecase.domain.entity;
+package nz.com.solnet.taskapi.api.domain.entity;
 
 public enum StatusEnum {
 	PENDING("PENDING"), FINISHED("FINISHED");
