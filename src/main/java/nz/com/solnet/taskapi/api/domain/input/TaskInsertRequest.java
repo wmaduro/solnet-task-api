@@ -7,17 +7,22 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import lombok.Data;
+import nz.com.solnet.taskapi.core.exception.custom.CustomBadRequestException;
 
 @Data
-public class TaskRequest {
-	@JsonInclude(Include.NON_NULL)
-	private String status;
+public class TaskInsertRequest {
 	@JsonInclude(Include.NON_NULL)
 	private String title;
 	@JsonInclude(Include.NON_NULL)
 	private String description;
 	@JsonInclude(Include.NON_NULL)
-	@JsonFormat (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
 	private Date due_date;
+
+	public void validate() {
+		if (title == null || title.trim().isEmpty()) {
+			throw new CustomBadRequestException("title cannot be null or empty.");
+		}
+	}
 
 }

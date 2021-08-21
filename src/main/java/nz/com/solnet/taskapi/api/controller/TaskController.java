@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import nz.com.solnet.taskapi.api.domain.entity.TaskEntity;
+import nz.com.solnet.taskapi.api.domain.input.TaskInsertRequest;
 import nz.com.solnet.taskapi.api.domain.input.TaskListResponse;
-import nz.com.solnet.taskapi.api.domain.input.TaskRequest;
+import nz.com.solnet.taskapi.api.domain.input.TaskUpdateRequest;
 import nz.com.solnet.taskapi.api.domain.model.TaskModel;
 import nz.com.solnet.taskapi.api.domain.parser.TaskParser;
 import nz.com.solnet.taskapi.api.service.TaskService;
@@ -57,16 +59,22 @@ public class TaskController {
 	
 	@ApiOperation("Fetch data for a single task")
 	@GetMapping("/{id}")
-	public ResponseEntity<?> get(@PathVariable Long id) {
+	public ResponseEntity<?> get(@PathVariable
+			@ApiParam(value = "Task id", example = "1", required = true)
+			Long id) {
 		TaskModel taskModel = taskParser.toModel(taskService.findById(id));
 		return new ResponseEntity<>(taskModel, HttpStatus.OK);
 	}
 
 	@ApiOperation("Add a new task")
 	@PostMapping
-	public ResponseEntity<?> add(@RequestBody TaskRequest taskRequest) {
+	public ResponseEntity<?> add(@RequestBody 
+			@ApiParam(value = "Task Json information", required = true)
+			TaskInsertRequest taskInsertRequest) {
+		
+		taskInsertRequest.validate();
 
-		TaskEntity taskEntity = taskParser.toEntity(taskRequest);
+		TaskEntity taskEntity = taskParser.toEntity(taskInsertRequest);
 		taskEntity = taskService.save(taskEntity);
 		TaskModel taskModel = taskParser.toModel(taskEntity);
 
@@ -74,10 +82,17 @@ public class TaskController {
 	}
 
 	@ApiOperation("Modify a task")
-	@PutMapping("/{id}")
-	public ResponseEntity<?> update(@PathVariable Long id, @RequestBody TaskRequest taskRequest) {
+	@PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> update(@PathVariable
+			@ApiParam(value = "Task id", example = "1", required = true)
+			Long id, 
+			@ApiParam(value = "Task Json information", required = true)
+			@RequestBody TaskUpdateRequest taskUpdateRequest) {
+		
+		taskUpdateRequest.validate();
+		
 		TaskEntity taskEntity = taskService.findById(id);
-		taskParser.mergeToEntity(taskRequest, taskEntity);
+		taskParser.mergeToEntity(taskUpdateRequest, taskEntity);
 		taskEntity = taskService.save(taskEntity);
 		TaskModel taskModel = taskParser.toModel(taskEntity);
 		return new ResponseEntity<>(taskModel, HttpStatus.OK);
@@ -85,7 +100,9 @@ public class TaskController {
 
 	@ApiOperation("Delete a task")
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> delete(@PathVariable Long id) {
+	public ResponseEntity<?> delete(@PathVariable 
+			@ApiParam(value = "Task id", example = "1", required = true)
+			Long id) {
 		TaskEntity taskEntity = taskService.findById(id);
 		taskService.delete(taskEntity);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);

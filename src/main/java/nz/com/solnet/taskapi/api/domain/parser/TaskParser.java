@@ -11,7 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import nz.com.solnet.taskapi.api.domain.entity.TaskEntity;
 import nz.com.solnet.taskapi.api.domain.input.TaskListResponse;
-import nz.com.solnet.taskapi.api.domain.input.TaskRequest;
+import nz.com.solnet.taskapi.api.domain.input.TaskInsertRequest;
 import nz.com.solnet.taskapi.api.domain.model.TaskModel;
 
 @Component
@@ -29,17 +29,17 @@ public class TaskParser {
 		return new TaskListResponse(taskModelList);
 	}
 	
-	public TaskEntity toEntity(TaskRequest taskRequest) {
-		return objectMapper.convertValue(taskRequest, TaskEntity.class);
+	public TaskEntity toEntity(TaskInsertRequest taskInsertRequest) {
+		return objectMapper.convertValue(taskInsertRequest, TaskEntity.class);
 	}
 	
 	public TaskModel toModel(TaskEntity taskEntity) {
 		return objectMapper.convertValue(taskEntity, TaskModel.class);
 	}
 	
-	public void mergeToEntity(TaskRequest taskRequest, TaskEntity taskEntity) {
+	public void mergeToEntity(Object from, Object to) {
 		modelMapper.getConfiguration().setPropertyCondition(Conditions.isNotNull());
-		modelMapper.map(taskRequest, taskEntity);
+		modelMapper.map(from, to);
 	}
 
 }
