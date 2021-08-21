@@ -23,10 +23,7 @@ public class TaskUpdateRequest {
 	private String status;
 
 	public void validate() {
-		if (due_date == null) {
-			throw new CustomBadRequestException("due_date cannot be null or empty.");
-		}
-
+		
 		if (title != null && title.trim().isEmpty()) {
 			throw new CustomBadRequestException("title cannot be null or empty.");
 		}
