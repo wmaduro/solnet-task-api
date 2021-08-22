@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 
 import lombok.Data;
 import nz.com.solnet.taskapi.core.exception.custom.CustomBadRequestException;
