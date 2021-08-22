@@ -12,6 +12,7 @@ This project intends to provide endpoints to a task management API.
 - Lombok
 - Derby
 - SpringFox Swagger 2
+- Heroku (Cloud deployment)
 
 ### How to test Locally
 #### Requirements
